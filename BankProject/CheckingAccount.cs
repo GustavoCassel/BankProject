@@ -13,7 +13,7 @@
     /// </summary>
     public class CheckingAccount : BaseAccount
     {
-        private const decimal OverdrawCharge = 35.0m;
+        public readonly static decimal OverdrawCharge = 35.0m;
 
         public CheckingAccount(string firstName, string lastName, decimal balance)
             : base(firstName, lastName, balance)
@@ -21,8 +21,10 @@
 
         public override void Withdraw(decimal amount)
         {
-            if (base._balance - amount <= 0)
+            if (base._balance - amount < 0)
+            {
                 amount += OverdrawCharge;
+            }
 
             base.Withdraw(amount);
         }

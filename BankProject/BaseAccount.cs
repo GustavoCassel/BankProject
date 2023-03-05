@@ -36,10 +36,5 @@
         {
             this._balance -= amount;
         }
-
-        public decimal ConsultBalance()
-        {
-            return this._balance;
-        }
     }
 }

@@ -16,8 +16,8 @@
     /// </summary>
     public class SavingAccount : BaseAccount
     {
-        private const decimal WithdrawalCharge = 2.0m;
-        private const int WithdrawalLimit = 3;
+        public readonly static decimal OverLimitWithdrawalCharge = 2.0m;
+        public readonly static int WithdrawalLimitWithoutFee = 3;
 
         private readonly decimal _interestRate;
         private int _withdrawCount;
@@ -36,8 +36,10 @@
 
         public override void Withdraw(decimal amount)
         {
-            if (this._withdrawCount >= WithdrawalLimit)
-                amount += WithdrawalCharge;
+            if (this._withdrawCount >= WithdrawalLimitWithoutFee)
+            {
+                amount += OverLimitWithdrawalCharge;
+            }
 
             if (this._balance - amount <= 0)
             {
