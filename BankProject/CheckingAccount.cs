@@ -21,7 +21,7 @@
 
         public override void Withdraw(decimal amount)
         {
-            if (base._balance - amount < 0)
+            if (_balance - amount < 0)
             {
                 amount += OverdrawCharge;
             }

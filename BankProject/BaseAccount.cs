@@ -4,11 +4,11 @@
     public abstract class BaseAccount
     {
         // Two read-only properties
-        public decimal Balance => this._balance;
+        public decimal Balance => _balance;
 
         public string AccountOwner
         {
-            get => $"{this._firstName} {this._lastName}";
+            get => $"{_firstName} {_lastName}";
         }
 
         // protected fields, means that this and every other child class can access this field.
@@ -17,9 +17,9 @@
         protected decimal _balance;
         public BaseAccount(string firstName, string lastName, decimal balance)
         {
-            this._firstName = firstName;
-            this._lastName = lastName;
-            this._balance = balance;
+            _firstName = firstName;
+            _lastName = lastName;
+            _balance = balance;
         }
 
         public void Deposit(decimal amount)
@@ -29,12 +29,12 @@
                 throw new NegativeAmmountDepositException();
             }
 
-            this._balance += amount;
+            _balance += amount;
         }
 
         public virtual void Withdraw(decimal amount)
         {
-            this._balance -= amount;
+            _balance -= amount;
         }
     }
 }

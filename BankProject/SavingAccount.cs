@@ -25,30 +25,30 @@
         public SavingAccount(string firstName, string lastName, decimal interestRate, decimal balance)
             : base(firstName, lastName, balance)
         {
-            this._withdrawCount = 0;
-            this._interestRate = interestRate;
+            _withdrawCount = 0;
+            _interestRate = interestRate;
         }
 
         public void ApplyInterest()
         {
-            base._balance += base._balance * this._interestRate;
+            _balance += _balance * _interestRate;
         }
 
         public override void Withdraw(decimal amount)
         {
-            if (this._withdrawCount >= WithdrawalLimitWithoutFee)
+            if (_withdrawCount >= WithdrawalLimitWithoutFee)
             {
                 amount += OverLimitWithdrawalCharge;
             }
 
-            if (this._balance - amount <= 0)
+            if (_balance - amount <= 0)
             {
                 throw new NotEnoughBalanceException();
             }
 
             base.Withdraw(amount);
 
-            this._withdrawCount++;
+            _withdrawCount++;
         }
     }
 }
